@@ -124,7 +124,14 @@ public class GWTPacket extends AbstractPacket {
 	for (int index = 0; index < childs.getLength(); index++) {
 	    item = childs.item(index);
 	    if (item.getNodeType() == Node.TEXT_NODE) {
-		return item.getNodeValue();
+	    	String result = "";
+	    	do
+	    	{
+	    		result += item.getNodeValue();
+	    		item = item.getNextSibling();
+	    	}
+	    	while(item != null && item.getNodeType() == Node.TEXT_NODE && item.getNodeValue().length() == 4096);
+	    	return result;
 	    }
 	}
 	return null;
