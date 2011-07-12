@@ -41,6 +41,11 @@ public abstract class AbstractPacket implements IPacket {
     public List<? extends IPacket> getChildren(final String name) {
 	return getChildren(MatcherFactory.byName(name));
     }
+    
+    @Override
+    public boolean isTextNode() {
+    	return false;
+    }
 
     @Override
     public IPacket getFirstChild(final PacketMatcher filter) {

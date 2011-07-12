@@ -24,7 +24,7 @@ package com.calclab.emite.core.client.packet;
 /**
  * Package private packet for use internal only
  */
-class TextPacket extends Packet {
+public class TextPacket extends Packet {
     private final String value;
 
     public TextPacket(final String value) {
@@ -35,5 +35,10 @@ class TextPacket extends Packet {
     @Override
     public String toString() {
 	return value;
+    }
+    
+    @Override
+    public boolean isTextNode() {
+    	return true;
     }
 }

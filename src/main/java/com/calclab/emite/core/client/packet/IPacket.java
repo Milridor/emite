@@ -37,6 +37,8 @@ public interface IPacket {
     HashMap<String, String> getAttributes();
 
     List<? extends IPacket> getChildren();
+    
+    boolean isTextNode();
 
     /**
      * Return a list of descendant childs after filter by the filter

@@ -46,23 +46,22 @@ public class PacketRenderer {
 	    }
 	}
 
-	final String rootText = root.getText();
-	if (rootText != null) {
-	    buffer.append(">");
-	    buffer.append(TextUtils.escape(rootText));
-	    buffer.append("</").append(name).append(">");
-	} else {
-	    final List<? extends IPacket> children = root.getChildren();
-	    if (children.size() > 0) {
+	final List<? extends IPacket> children = root.getChildren();
+	if(children.size() == 0) {
+		buffer.append(" />");
+	}
+	else
+	{
 		buffer.append(">");
 		for (final IPacket child : children) {
-		    toString(child, buffer);
+			if(child.isTextNode())
+				buffer.append(TextUtils.escape(child.toString()));
+			else
+				toString(child, buffer);
 		}
 		buffer.append("</").append(name).append(">");
-	    } else {
-		buffer.append(" />");
-	    }
 	}
+	
     }
 
 }

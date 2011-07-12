@@ -60,6 +60,11 @@ public class DelegatedPacket implements IPacket {
     public List<? extends IPacket> getChildren() {
 	return delegate.getChildren();
     }
+    
+    @Override
+    public boolean isTextNode() {
+    	return delegate.isTextNode();
+    }
 
     @Override
     public List<? extends IPacket> getChildren(final PacketMatcher filter) {

@@ -75,6 +75,11 @@ public class NoPacket implements IPacket {
     public List<? extends IPacket> getChildren(final String name) {
 	return EMPTY_CHILDREN;
     }
+    
+    @Override
+    public boolean isTextNode() {
+    	return false;
+    }
 
     @Override
     public int getChildrenCount() {

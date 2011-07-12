@@ -28,6 +28,7 @@ import java.util.Map;
 
 import com.calclab.emite.core.client.packet.AbstractPacket;
 import com.calclab.emite.core.client.packet.IPacket;
+import com.calclab.emite.core.client.packet.TextPacket;
 import com.calclab.emite.core.client.packet.PacketRenderer;
 import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.NamedNodeMap;
@@ -91,6 +92,11 @@ public class GWTPacket extends AbstractPacket {
     @Override
     public List<? extends IPacket> getChildren() {
 	return wrap(element.getChildNodes());
+    }
+    
+    @Override
+    public boolean isTextNode() {
+    	return element.getNodeType() == Node.TEXT_NODE;
     }
 
     @Override
@@ -185,7 +191,9 @@ public class GWTPacket extends AbstractPacket {
 	    final Node node = nodes.item(index);
 	    if (node.getNodeType() == Node.ELEMENT_NODE) {
 		selected.add(new GWTPacket((Element) node));
-	    } else if (node.getNodeType() == Node.TEXT_NODE) {
+	    }
+	    else if(node.getNodeType() == Node.TEXT_NODE) {
+	    	selected.add(new TextPacket(node.getNodeValue()));
 	    }
 	}
 	return selected;
